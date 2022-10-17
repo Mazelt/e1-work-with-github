@@ -31,7 +31,7 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }} running on $(uname)"
+      run: echo "Hello ${{ github.event.inputs.name }} running on ${{ matrix.os }}"
       
   meet:
     needs: greet
@@ -40,12 +40,11 @@ jobs:
     - name: Diskutieren
       run: echo "Diskutieren"
 
-    # TODO use a github action from the marketplace
     - name: Get os version
       uses: sersoft-gmbh/os-version-action@v2.0.0
    
     - name: checkout
-      uses: actions/checkout@2.5.0
+      uses: actions/checkout@v2.5.0
   
     - name: cat
       run: cat LICENSE
@@ -54,5 +53,5 @@ jobs:
     needs: meet
     runs-on: ubuntu-latest
     steps: 
-        - name: Say bye
-          run: echo "Tschüss"
+    - name: Say bye
+      run: echo "Tschüss"
